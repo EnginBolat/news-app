@@ -9,16 +9,17 @@ export default function App() {
     <SafeAreaView style={styles.container}>
       <Text style={styles.heroTitle}>News</Text>
 
-      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-        {news_banner_data.map(bannerData => (
-          <Image
-            style={styles.imageContainer}
-            source={{ uri: bannerData.imageUrl }}
-          />
-        ))}
-      </ScrollView>
+
 
       <FlatList
+        ListHeaderComponent={() => <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          {news_banner_data.map(bannerData => (
+            <Image
+              style={styles.imageContainer}
+              source={{ uri: bannerData.imageUrl }}
+            />
+          ))}
+        </ScrollView>}
         keyExtractor={item => item.u_id.toString()}
         data={news_data}
         renderItem={({ item }) => <NewsCard item={item}></NewsCard>}
